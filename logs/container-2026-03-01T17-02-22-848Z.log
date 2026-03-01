@@ -1,0 +1,62 @@
+=== Container Run Log ===
+Timestamp: 2026-03-01T17:02:22.848Z
+Group: Feishu Group
+IsMain: true
+Duration: 3925ms
+Exit Code: 1
+Stdout Truncated: false
+Stderr Truncated: false
+
+=== Input ===
+{
+  "prompt": "<messages>\n<message sender=\"ou_368736628a3d34a16247e77c7064a377\" time=\"2026-03-01T17:02:02.450Z\">hello</message>\n<message sender=\"ou_368736628a3d34a16247e77c7064a377\" time=\"2026-03-01T17:02:05.165Z\">你好</message>\n<message sender=\"ou_368736628a3d34a16247e77c7064a377\" time=\"2026-03-01T17:02:17.306Z\">@_user_1 你好</message>\n</messages>",
+  "groupFolder": "main",
+  "chatJid": "fs:oc_0818cac615fd3d6b3429d665cef4822f",
+  "isMain": true,
+  "assistantName": "Andy"
+}
+
+=== Container Args ===
+run -i --rm --name nanoclaw-main-1772384538924 -e TZ=Asia/Shanghai -v /tmp/nanoclaw/nanoclaw-main:/workspace/project:ro -v /tmp/nanoclaw/nanoclaw-main/groups/main:/workspace/group -v /tmp/nanoclaw/nanoclaw-main/data/sessions/main/.claude:/home/node/.claude -v /tmp/nanoclaw/nanoclaw-main/data/ipc/main:/workspace/ipc -v /tmp/nanoclaw/nanoclaw-main/data/sessions/main/agent-runner-src:/app/src nanoclaw-agent:latest
+
+=== Mounts ===
+/tmp/nanoclaw/nanoclaw-main -> /workspace/project (ro)
+/tmp/nanoclaw/nanoclaw-main/groups/main -> /workspace/group
+/tmp/nanoclaw/nanoclaw-main/data/sessions/main/.claude -> /home/node/.claude
+/tmp/nanoclaw/nanoclaw-main/data/ipc/main -> /workspace/ipc
+/tmp/nanoclaw/nanoclaw-main/data/sessions/main/agent-runner-src -> /app/src
+
+=== Stderr ===
+[agent-runner] Received input for group: main
+[agent-runner] Failed to process input file 1772384526902-xnh0.json: EACCES: permission denied, unlink '/workspace/ipc/input/1772384526902-xnh0.json'
+[agent-runner] Starting query (session: new, resumeAt: latest)...
+[agent-runner] Failed to process input file 1772384526902-xnh0.json: EACCES: permission denied, unlink '/workspace/ipc/input/1772384526902-xnh0.json'
+[agent-runner] Failed to process input file 1772384526902-xnh0.json: EACCES: permission denied, unlink '/workspace/ipc/input/1772384526902-xnh0.json'
+node:fs:1377
+  const result = binding.mkdir(
+                         ^
+
+Error: EACCES: permission denied, mkdir '/home/node/.claude/debug'
+    at Module.mkdirSync (node:fs:1377:26)
+    at file:///app/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs:17:2112
+    at F0 (file:///app/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs:17:419)
+    at Object.mkdirSync (file:///app/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs:17:2008)
+    at writeFn (file:///app/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs:15:39675)
+    at Timeout.H [as _onTimeout] (file:///app/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs:15:38024)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7) {
+  errno: -13,
+  code: 'EACCES',
+  syscall: 'mkdir',
+  path: '/home/node/.claude/debug'
+}
+
+Node.js v22.22.0
+
+
+=== Stdout ===
+npm notice
+npm notice New major version of npm available! 10.9.4 -> 11.11.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.0
+npm notice To update run: npm install -g npm@11.11.0
+npm notice
