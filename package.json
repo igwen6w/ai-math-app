@@ -6,7 +6,9 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "bash scripts/pre-push-test.sh",
+    "test:prod": "curl -s https://ai-math-app.ttttv.xyz/ | grep -q '数学乐园' && echo '✅ Site is live'"
   },
   "dependencies": {
     "next": "^16.1.6",

@@ -1,0 +1,88 @@
+name: Test Before Push
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Start server
+        run: |
+          cd out
+          python3 -m http.server 3000 &
+          cd ..
+          sleep 5
+
+      - name: Test homepage
+        run: |
+          response=$(curl -s http://localhost:3000/)
+          if echo "$response" | grep -q "数学乐园"; then
+            echo "✅ Homepage test passed"
+          else
+            echo "❌ Homepage test failed"
+            exit 1
+          fi
+
+      - name: Test game routes
+        run: |
+          for game in counting arithmetic matching comparison; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/games/$game/)
+            if [ "$status" = "200" ]; then
+              echo "✅ /games/$game test passed"
+            else
+              echo "❌ /games/$game test failed with status $status"
+              exit 1
+            fi
+          done
+
+      - name: Test manifest
+        run: |
+          response=$(curl -s http://localhost:3000/manifest.json)
+          if echo "$response" | grep -q "数学乐园"; then
+            echo "✅ Manifest test passed"
+          else
+            echo "❌ Manifest test failed"
+            exit 1
+          fi
+
+      - name: Check static files exist
+        run: |
+          if [ -f "out/index.html" ]; then
+            echo "✅ out/index.html exists"
+          else
+            echo "❌ out/index.html not found"
+            exit 1
+          fi
+
+          if [ -f "out/.nojekyll" ]; then
+            echo "✅ out/.nojekyll exists"
+          else
+            echo "❌ out/.nojekyll not found"
+            exit 1
+          fi
+
+          for game in counting arithmetic matching comparison; do
+            if [ -f "out/games/$game/index.html" ]; then
+              echo "✅ out/games/$game/index.html exists"
+            else
+              echo "❌ out/games/$game/index.html not found"
+              exit 1
+            fi
+          done

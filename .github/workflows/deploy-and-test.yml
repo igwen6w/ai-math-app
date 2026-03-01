@@ -1,0 +1,83 @@
+name: Deploy and Test
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-and-test:
+    runs-on: ubuntu-latest
+    # Wait for GitHub Pages to deploy (about 2 minutes)
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Wait for deployment
+        run: |
+          echo "Waiting for GitHub Pages to deploy..."
+          sleep 120
+
+      - name: Test production site
+        run: |
+          # Test homepage
+          echo "Testing production site..."
+          response=$(curl -s https://ai-math-app.ttttv.xyz/)
+          if echo "$response" | grep -q "数学乐园"; then
+            echo "✅ Production homepage test passed"
+          else
+            echo "❌ Production homepage test failed"
+            echo "Response was:"
+            echo "$response" | head -20
+            exit 1
+          fi
+
+      - name: Test game routes
+        run: |
+          for game in counting arithmetic matching comparison; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" https://ai-math-app.ttttv.xyz/games/$game/)
+            if [ "$status" = "200" ]; then
+              echo "✅ Production /games/$game/ test passed (200)"
+            else
+              echo "❌ Production /games/$game/ test failed with status $status"
+              exit 1
+            fi
+          done
+
+      - name: Test PWA manifest
+        run: |
+          response=$(curl -s https://ai-math-app.ttttv.xyz/manifest.json)
+          if echo "$response" | grep -q "数学乐园"; then
+            echo "✅ Production manifest test passed"
+          else
+            echo "❌ Production manifest test failed"
+            exit 1
+          fi
+
+      - name: Verify static assets
+        run: |
+          # Check if CSS loads
+          css_status=$(curl -s -o /dev/null -w "%{http_code}" https://ai-math-app.ttttv.xyz/_next/static/css/)
+          echo "CSS directory status: $css_status"
+
+          # Check if icons exist
+          for size in 72 96 128 144 152 192 384 512; do
+            icon_status=$(curl -s -o /dev/null -w "%{http_code}" https://ai-math-app.ttttv.xyz/icons/icon-${size}x${size}.png)
+            if [ "$icon_status" = "200" ]; then
+              echo "✅ Icon ${size}x${size} exists"
+            else
+              echo "⚠️  Icon ${size}x${size} returned $icon_status"
+            fi
+          done
+
+      - name: Report success
+        if: success()
+        run: |
+          echo "🎉 All production tests passed!"
+          echo "Site is live at: https://ai-math-app.ttttv.xyz/"
+
+      - name: Report failure
+        if: failure()
+        run: |
+          echo "❌ Production tests failed!"
+          echo "Please check the deployment at: https://ai-math-app.ttttv.xyz/"
+          exit 1
