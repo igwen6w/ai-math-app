@@ -7,9 +7,10 @@ type Game = {
   id: string;
   title: string;
   icon: string;
-  gradient: string;
+  bgFrom: string;
+  bgTo: string;
   description: string;
-  color: string;
+  textColor: string;
 };
 
 const games: Game[] = [
@@ -17,33 +18,37 @@ const games: Game[] = [
     id: "counting",
     title: "数数游戏",
     icon: "🔢",
-    gradient: "from-violet-500 to-purple-600",
-    description: "学习1到10的数字",
-    color: "text-purple-600",
+    bgFrom: "#FF6B6B",
+    bgTo: "#FF8E8E",
+    description: "认识数字1-10",
+    textColor: "text-white",
   },
   {
     id: "arithmetic",
     title: "加减法",
     icon: "➕",
-    gradient: "from-pink-500 to-rose-500",
-    description: "简单的加减运算",
-    color: "text-pink-600",
+    bgFrom: "#4ECDC4",
+    bgTo: "#7EDCD6",
+    description: "学习加减运算",
+    textColor: "text-white",
   },
   {
     id: "matching",
     title: "数字配对",
     icon: "🎯",
-    gradient: "from-cyan-500 to-blue-500",
-    description: "数字与数量配对",
-    color: "text-cyan-600",
+    bgFrom: "#FFE66D",
+    bgTo: "#FFF0A0",
+    description: "配对找朋友",
+    textColor: "text-gray-800",
   },
   {
     id: "comparison",
     title: "大小比较",
     icon: "⚖️",
-    gradient: "from-emerald-500 to-teal-500",
-    description: "学习大于小于",
-    color: "text-emerald-600",
+    bgFrom: "#95E1D3",
+    bgTo: "#B8F0E6",
+    description: "比大小学符号",
+    textColor: "text-gray-800",
   },
 ];
 
@@ -77,23 +82,29 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-violet-50 p-6 md:p-12">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-teal-50">
+      <div className="max-w-5xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-violet-500 to-purple-600 rounded-3xl shadow-2xl mb-6 gentle-pulse">
-            <span className="text-5xl">🧮</span>
+          <div className="inline-block mb-8">
+            <div className="w-28 h-28 mx-auto bg-gradient-to-br from-orange-400 to-pink-500 rounded-[2rem] shadow-2xl flex items-center justify-center mb-6 transform rotate-3 hover:rotate-0 transition-transform duration-300">
+              <span className="text-6xl">🎮</span>
+            </div>
           </div>
-          <h1 className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-pink-600 to-blue-600 mb-4 modern-cute-font">
-            数学启蒙
+
+          <h1 className="text-7xl md:text-8xl font-black mb-6 tracking-tight" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+            <span className="text-orange-500">快乐</span>
+            <span className="text-pink-500">数学</span>
           </h1>
-          <p className="text-2xl md:text-3xl text-slate-600 font-semibold mb-8">
-            快乐学习，轻松掌握
+
+          <p className="text-2xl text-gray-600 font-medium mb-8">
+            在游戏中学习，在快乐中成长
           </p>
+
           {showInstall && (
             <button
               onClick={handleInstall}
-              className="px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-2xl font-bold text-lg hover:from-violet-700 hover:to-purple-700 active:scale-95 shadow-xl hover:shadow-2xl transition-all duration-300"
+              className="px-8 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-200"
             >
               📱 安装应用
             </button>
@@ -101,49 +112,50 @@ export default function Home() {
         </div>
 
         {/* Games Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {games.map((game, index) => (
             <button
               key={game.id}
               onClick={() => router.push(`/games/${game.id}`)}
-              className={`group relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-3xl transition-all duration-500 modern-card shine-effect border-2 border-slate-100 hover:border-${game.color.split('-')[1]}-200`}
+              className="group relative overflow-hidden rounded-3xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               style={{
-                animationDelay: `${index * 0.1}s`,
+                background: `linear-gradient(135deg, ${game.bgFrom} 0%, ${game.bgTo} 100%)`,
               }}
             >
-              {/* Gradient Background Circle */}
-              <div className={`absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br ${game.gradient} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-6">
-                  <div className={`w-20 h-20 bg-gradient-to-br ${game.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <span className="text-4xl">{game.icon}</span>
+              <div className="bg-white rounded-[1.7rem] p-8 h-full">
+                <div className="flex items-center justify-between mb-6">
+                  <div
+                    className="w-24 h-24 rounded-2xl flex items-center justify-center shadow-md text-6xl"
+                    style={{
+                      background: `linear-gradient(135deg, ${game.bgFrom} 0%, ${game.bgTo} 100%)`,
+                    }}
+                  >
+                    {game.icon}
                   </div>
-                  <div className="flex gap-2">
-                    {Array.from({ length: 3 }).map((_, i) => (
+                  <div className="flex gap-1">
+                    {[1, 2, 3].map((i) => (
                       <div
                         key={i}
-                        className={`w-3 h-3 rounded-full bg-gradient-to-br ${game.gradient} opacity-60`}
-                        style={{ animationDelay: `${i * 0.2}s` }}
-                      ></div>
+                        className="w-2 h-2 rounded-full opacity-40"
+                        style={{
+                          background: `linear-gradient(135deg, ${game.bgFrom} 0%, ${game.bgTo} 100%)`,
+                        }}
+                      />
                     ))}
                   </div>
                 </div>
 
-                <h2 className="text-3xl font-bold text-slate-800 mb-3 text-left modern-cute-font">
+                <h2 className="text-3xl font-black text-gray-800 mb-3 text-left">
                   {game.title}
                 </h2>
 
-                <p className="text-lg text-slate-500 mb-6 text-left font-medium">
+                <p className="text-lg text-gray-500 mb-6 text-left font-medium">
                   {game.description}
                 </p>
 
-                <div className="flex items-center gap-3 text-slate-600 font-semibold">
-                  <span>开始游戏</span>
-                  <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                <div className={`flex items-center gap-2 font-bold ${game.textColor === 'text-white' ? 'text-gray-700' : 'text-gray-600'}`}>
+                  <span className="text-lg">开始游戏</span>
+                  <span className="text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </div>
               </div>
             </button>
@@ -151,13 +163,13 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-20">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg">
+        <div className="text-center">
+          <div className="inline-flex items-center gap-4 px-8 py-4 bg-white rounded-full shadow-md">
             <span className="text-2xl">🎨</span>
-            <p className="text-slate-600 font-semibold">
-              专为儿童设计 · 支持离线使用
+            <p className="text-gray-600 font-semibold text-lg">
+              专为3-6岁儿童设计
             </p>
-            <span className="text-2xl">✨</span>
+            <span className="text-2xl">💫</span>
           </div>
         </div>
       </div>
