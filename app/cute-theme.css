@@ -1,88 +1,103 @@
-/* Cute theme additions for child-friendly UI */
+/* Modern cute theme for children's app */
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
 
-.cute-font {
-  font-family: 'Fredoka One', cursive;
+:root {
+  --primary-pink: #FF6B9D;
+  --primary-blue: #4ECDC4;
+  --primary-yellow: #FFE66D;
+  --primary-purple: #A8E6CF;
+  --soft-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  --soft-shadow-hover: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-.cute-body {
+.modern-cute-font {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.modern-body {
   font-family: 'Nunito', sans-serif;
 }
 
-/* Rainbow button effect */
-.rainbow-btn {
-  background: linear-gradient(
-    90deg,
-    #ff9a9e 0%,
-    #fecfef 25%,
-    #fecfef 50%,
-    #a18cd1 75%,
-    #fbc2eb 100%
-  );
-  background-size: 200% 200%;
-  animation: rainbow 3s ease infinite;
+/* Modern card hover effect */
+.modern-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.modern-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--soft-shadow-hover);
 }
 
-/* Bouncy animation */
-@keyframes cute-bounce {
+/* Smooth bounce animation */
+@keyframes smoothBounce {
   0%, 100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px) scale(1.1);
+    transform: translateY(-6px);
   }
 }
 
-.cute-bounce {
-  animation: cute-bounce 1s ease-in-out infinite;
+.smooth-bounce {
+  animation: smoothBounce 3s ease-in-out infinite;
 }
 
-/* Wiggle animation */
-@keyframes wiggle {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
+/* Gentle pulse */
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
 }
 
-.cute-wiggle:hover {
-  animation: wiggle 0.3s ease-in-out infinite;
+.gentle-pulse {
+  animation: gentlePulse 2s ease-in-out infinite;
 }
 
-/* Soft shadows */
-.cute-shadow {
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 10px 20px rgba(0, 0, 0, 0.1),
-    0 0 0 4px rgba(255, 255, 255, 0.5) inset;
+/* Modern gradient backgrounds */
+.gradient-bg-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-/* Star decorations */
-.star-decoration::before,
-.star-decoration::after {
-  content: '⭐';
+.gradient-bg-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.gradient-bg-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.gradient-bg-4 {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Soft shine effect */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::before {
+  content: '';
   position: absolute;
-  font-size: 2rem;
-  animation: sparkle 2s ease-in-out infinite;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
 }
 
-.star-decoration::before {
-  top: -10px;
-  left: -10px;
-}
-
-.star-decoration::after {
-  bottom: -10px;
-  right: -10px;
-  animation-delay: 1s;
-}
-
-@keyframes sparkle {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
+.shine-effect:hover::before {
+  left: 100%;
 }
