@@ -1,0 +1,88 @@
+/* Cute theme additions for child-friendly UI */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap');
+
+.cute-font {
+  font-family: 'Fredoka One', cursive;
+}
+
+.cute-body {
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Rainbow button effect */
+.rainbow-btn {
+  background: linear-gradient(
+    90deg,
+    #ff9a9e 0%,
+    #fecfef 25%,
+    #fecfef 50%,
+    #a18cd1 75%,
+    #fbc2eb 100%
+  );
+  background-size: 200% 200%;
+  animation: rainbow 3s ease infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Bouncy animation */
+@keyframes cute-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+.cute-bounce {
+  animation: cute-bounce 1s ease-in-out infinite;
+}
+
+/* Wiggle animation */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.cute-wiggle:hover {
+  animation: wiggle 0.3s ease-in-out infinite;
+}
+
+/* Soft shadows */
+.cute-shadow {
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 4px rgba(255, 255, 255, 0.5) inset;
+}
+
+/* Star decorations */
+.star-decoration::before,
+.star-decoration::after {
+  content: '⭐';
+  position: absolute;
+  font-size: 2rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.star-decoration::before {
+  top: -10px;
+  left: -10px;
+}
+
+.star-decoration::after {
+  bottom: -10px;
+  right: -10px;
+  animation-delay: 1s;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}

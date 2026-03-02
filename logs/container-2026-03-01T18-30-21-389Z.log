@@ -1,0 +1,19 @@
+=== Container Run Log ===
+Timestamp: 2026-03-01T18:30:21.389Z
+Group: Feishu Group
+IsMain: true
+Duration: 5020266ms
+Exit Code: 0
+Stdout Truncated: false
+Stderr Truncated: false
+
+=== Input Summary ===
+Prompt length: 121 chars
+Session ID: af98a4ad-175f-48b6-9286-0283912246c4
+
+=== Mounts ===
+/workspace/project (ro)
+/workspace/group
+/home/node/.claude
+/workspace/ipc
+/app/src

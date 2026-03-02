@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./cute-theme.css";
 
 export const metadata: Metadata = {
   title: "AI Math App - 儿童数学游戏",
@@ -17,7 +18,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#4F46E5",
+  themeColor: "#FFB6C1",
 };
 
 export default function RootLayout({
@@ -30,8 +31,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icons/icon-192x192.png" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased cute-body">
         {children}
       </body>
     </html>

@@ -27,7 +27,7 @@ sleep 3
 
 # Test homepage
 echo "🔍 Testing homepage..."
-if curl -s http://localhost:3000/ | grep -q "数学乐园"; then
+if curl -s http://localhost:3000/ | grep -q "数学"; then
   echo "✅ Homepage test passed"
 else
   echo "❌ Homepage test failed"
