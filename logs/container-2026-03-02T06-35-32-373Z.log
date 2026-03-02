@@ -1,0 +1,40 @@
+=== Container Run Log ===
+Timestamp: 2026-03-02T06:35:32.373Z
+Group: Feishu Group
+IsMain: true
+Duration: 2845ms
+Exit Code: 2
+Stdout Truncated: false
+Stderr Truncated: false
+
+=== Input ===
+{
+  "prompt": "每5分钟同步一次全球最新科技资讯。\n\n任务要求：\n1. 使用WebSearch搜索最新的全球科技新闻和AI资讯\n2. 重点关注：\n   - AI技术动态\n   - 科技巨头新闻\n   - 中国科技发展\n   - 产业投资趋势\n3. 提供简短介绍（每条1-2句话）\n4. 包含相关链接\n5. 使用中文回复\n6. 格式清晰，使用emoji图标分类\n\n使用这些搜索查询：\n- \"latest technology news today\"\n- \"AI tech news 2026\"\n- \"全球科技新闻 最新\"\n- \"人工智能动态 2026\"\n\n完成后通过 send_message 立即发送结果给用户。",
+  "sessionId": "af98a4ad-175f-48b6-9286-0283912246c4",
+  "groupFolder": "main",
+  "chatJid": "fs:oc_0818cac615fd3d6b3429d665cef4822f",
+  "isMain": true,
+  "isScheduledTask": true,
+  "assistantName": "Andy"
+}
+
+=== Container Args ===
+run -i --rm --name nanoclaw-main-1772433329528 -e TZ=Asia/Shanghai -v /tmp/nanoclaw/nanoclaw-main:/workspace/project:ro -v /tmp/nanoclaw/nanoclaw-main/groups/main:/workspace/group -v /tmp/nanoclaw/nanoclaw-main/data/sessions/main/.claude:/home/node/.claude -v /tmp/nanoclaw/nanoclaw-main/data/ipc/main:/workspace/ipc -v /tmp/nanoclaw/nanoclaw-main/data/sessions/main/agent-runner-src:/app/src nanoclaw-agent:latest
+
+=== Mounts ===
+/tmp/nanoclaw/nanoclaw-main -> /workspace/project (ro)
+/tmp/nanoclaw/nanoclaw-main/groups/main -> /workspace/group
+/tmp/nanoclaw/nanoclaw-main/data/sessions/main/.claude -> /home/node/.claude
+/tmp/nanoclaw/nanoclaw-main/data/ipc/main -> /workspace/ipc
+/tmp/nanoclaw/nanoclaw-main/data/sessions/main/agent-runner-src -> /app/src
+
+=== Stderr ===
+/app/entrypoint.sh: line 24: unexpected EOF while looking for matching `"'
+
+
+=== Stdout ===
+npm notice
+npm notice New major version of npm available! 10.9.4 -> 11.11.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.0
+npm notice To update run: npm install -g npm@11.11.0
+npm notice

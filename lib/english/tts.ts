@@ -182,12 +182,10 @@ export class TextToSpeech {
     // Prefer voices that:
     // 1. Match the exact language
     // 2. Have "Female" or "Google" in the name (often higher quality)
-    // 3. Are local (not remote)
     const exactMatch = englishVoices.filter(v => v.lang === lang);
     const pool = exactMatch.length > 0 ? exactMatch : englishVoices;
 
     const preferred = pool.find(v =>
-      v.local &&
       (v.name.includes('Female') ||
        v.name.includes('Google') ||
        v.name.includes('Samantha') ||

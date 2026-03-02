@@ -22,7 +22,6 @@ const games: Game[] = [
     id: 'card-matching',
     title: 'Card Matching',
     titleZh: '卡片配对',
-    description: 'Match words with pictures!',
     description: 'Match English words with pictures',
     icon: '🎴',
     ageRange: '2-5岁',

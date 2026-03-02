@@ -1,0 +1,39 @@
+=== Container Run Log ===
+Timestamp: 2026-03-02T06:47:48.465Z
+Group: Feishu Group
+IsMain: true
+Duration: 2868ms
+Exit Code: 2
+Stdout Truncated: false
+Stderr Truncated: false
+
+=== Input ===
+{
+  "prompt": "<messages>\n<message sender=\"ou_368736628a3d34a16247e77c7064a377\" time=\"2026-03-02T06:46:10.388Z\">你现在有哪些任务是需要常驻执行的?</message>\n<message sender=\"ou_368736628a3d34a16247e77c7064a377\" time=\"2026-03-02T06:47:41.081Z\">@Andy 是还在吗?</message>\n<message sender=\"ou_368736628a3d34a16247e77c7064a377\" time=\"2026-03-02T06:47:44.795Z\">你好啊</message>\n</messages>",
+  "sessionId": "af98a4ad-175f-48b6-9286-0283912246c4",
+  "groupFolder": "main",
+  "chatJid": "fs:oc_0818cac615fd3d6b3429d665cef4822f",
+  "isMain": true,
+  "assistantName": "Andy"
+}
+
+=== Container Args ===
+run -i --rm --name nanoclaw-main-1772434065597 -e TZ=Asia/Shanghai -v /tmp/nanoclaw/nanoclaw-main:/workspace/project:ro -v /tmp/nanoclaw/nanoclaw-main/groups/main:/workspace/group -v /tmp/nanoclaw/nanoclaw-main/data/sessions/main/.claude:/home/node/.claude -v /tmp/nanoclaw/nanoclaw-main/data/ipc/main:/workspace/ipc -v /tmp/nanoclaw/nanoclaw-main/data/sessions/main/agent-runner-src:/app/src nanoclaw-agent:latest
+
+=== Mounts ===
+/tmp/nanoclaw/nanoclaw-main -> /workspace/project (ro)
+/tmp/nanoclaw/nanoclaw-main/groups/main -> /workspace/group
+/tmp/nanoclaw/nanoclaw-main/data/sessions/main/.claude -> /home/node/.claude
+/tmp/nanoclaw/nanoclaw-main/data/ipc/main -> /workspace/ipc
+/tmp/nanoclaw/nanoclaw-main/data/sessions/main/agent-runner-src -> /app/src
+
+=== Stderr ===
+/app/entrypoint.sh: line 24: unexpected EOF while looking for matching `"'
+
+
+=== Stdout ===
+npm notice
+npm notice New major version of npm available! 10.9.4 -> 11.11.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.0
+npm notice To update run: npm install -g npm@11.11.0
+npm notice
