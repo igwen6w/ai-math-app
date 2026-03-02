@@ -1,16 +1,28 @@
-/* Modern cute theme for children's app */
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
+/* Modern cute theme for children's educational app */
+/* Inspired by Khan Academy Kids & Duolingo */
 
 :root {
-  --primary-pink: #FF6B9D;
-  --primary-blue: #4ECDC4;
-  --primary-yellow: #FFE66D;
-  --primary-purple: #A8E6CF;
-  --soft-shadow: 0 8px 30px rgba(0,0,0,0.12);
-  --soft-shadow-hover: 0 15px 35px rgba(0,0,0,0.15);
+  /* 主色调 - 温暖活力系 */
+  --primary-orange: #FF9F1C;
+  --primary-orange-light: #FFBF69;
+  --primary-teal: #2EC4B6;
+  --primary-teal-light: #CBF3F0;
+  --primary-red: #E71D36;
+  --primary-red-light: #FF6B6B;
+  --primary-purple: #667eea;
+  --primary-purple-light: #764ba2;
+  
+  /* 背景色 */
+  --bg-cream: #FFFDF8;
+  --bg-soft: #f8fafc;
+  
+  /* 阴影 */
+  --soft-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  --soft-shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
+  --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
 }
 
+/* 字体设置 */
 .modern-cute-font {
   font-family: 'Quicksand', sans-serif;
 }
@@ -19,9 +31,101 @@
   font-family: 'Nunito', sans-serif;
 }
 
-/* Modern card hover effect */
+/* ==================== 浮动动画 ==================== */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-15px) translateX(3px);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-12px) translateX(-8px);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+}
+
+/* ==================== 闪烁动画 ==================== */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+.delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* ==================== 轻柔弹跳 ==================== */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 3s ease-in-out infinite;
+}
+
+/* ==================== 现代卡片效果 ==================== */
 .modern-card {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .modern-card:hover {
@@ -29,22 +133,8 @@
   box-shadow: var(--soft-shadow-hover);
 }
 
-/* Smooth bounce animation */
-@keyframes smoothBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.smooth-bounce {
-  animation: smoothBounce 3s ease-in-out infinite;
-}
-
-/* Gentle pulse */
-@keyframes gentlePulse {
+/* ==================== 光滑脉冲 ==================== */
+@keyframes gentle-pulse {
   0%, 100% {
     transform: scale(1);
     opacity: 1;
@@ -56,27 +146,32 @@
 }
 
 .gentle-pulse {
-  animation: gentlePulse 2s ease-in-out infinite;
+  animation: gentle-pulse 2s ease-in-out infinite;
 }
 
-/* Modern gradient backgrounds */
+/* ==================== 渐变背景 ==================== */
 .gradient-bg-1 {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .gradient-bg-2 {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #FF9F1C 0%, #FFBF69 100%);
 }
 
 .gradient-bg-3 {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #2EC4B6 0%, #CBF3F0 100%);
 }
 
 .gradient-bg-4 {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(135deg, #E71D36 0%, #FF6B6B 100%);
 }
 
-/* Soft shine effect */
+/* 顶部渐变 */
+.gradient-header {
+  background: linear-gradient(135deg, #2dd4bf 0%, #06b6d4 50%, #3b82f6 100%);
+}
+
+/* ==================== 光泽效果 ==================== */
 .shine-effect {
   position: relative;
   overflow: hidden;
@@ -92,12 +187,203 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.4),
     transparent
   );
-  transition: left 0.5s;
+  transition: left 0.6s ease;
 }
 
 .shine-effect:hover::before {
   left: 100%;
+}
+
+/* ==================== 彩虹装饰 ==================== */
+.rainbow-decoration {
+  background: linear-gradient(
+    90deg,
+    #ff6b6b 0%,
+    #feca57 20%,
+    #48dbfb 40%,
+    #ff9ff3 60%,
+    #54a0ff 80%,
+    #5f27cd 100%
+  );
+}
+
+/* ==================== 星星爆发 ==================== */
+@keyframes star-burst {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.star-burst {
+  animation: star-burst 0.8s ease-out forwards;
+}
+
+/* ==================== 粒子效果 ==================== */
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.particle {
+  animation: particle-float 1.5s ease-out forwards;
+}
+
+/* ==================== 按钮按压效果 ==================== */
+.btn-press {
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn-press:active {
+  transform: scale(0.95);
+}
+
+/* ==================== 卡片3D效果 ==================== */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card-3d:hover {
+  transform: rotateY(5deg) rotateX(5deg);
+}
+
+/* ==================== 波浪动画 ==================== */
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-25%) translateY(10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.animate-wave {
+  animation: wave 10s ease-in-out infinite;
+}
+
+/* ==================== 进度条动画 ==================== */
+@keyframes progress-fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress, 100%);
+  }
+}
+
+.progress-animated {
+  animation: progress-fill 1s ease-out forwards;
+}
+
+/* ==================== 数字计数动画 ==================== */
+@keyframes count-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.count-up {
+  animation: count-up 0.5s ease-out forwards;
+}
+
+/* ==================== 摇摆动画 ==================== */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+/* ==================== 震动反馈 ==================== */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* ==================== 缩放弹出 ==================== */
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pop-in {
+  animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ==================== 正确/错误反馈 ==================== */
+@keyframes correct-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.correct-feedback {
+  animation: correct-bounce 0.4s ease-in-out;
+}
+
+.wrong-feedback {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ==================== 加载动画 ==================== */
+@keyframes loading-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.loading-dot {
+  animation: loading-bounce 0.6s ease-in-out infinite;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.loading-dot:nth-child(3) {
+  animation-delay: 0.2s;
 }
